@@ -1,0 +1,44 @@
+.split-pane {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0; /* allow children to shrink */
+  height: 100%;
+  position: relative;
+}
+
+.split-left {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.split-right {
+  flex: 0 0 auto;
+  height: 100%;
+  overflow: auto;
+  background: var(--bg-secondary, #0f1115);
+  border-left: 1px solid var(--border-color, rgba(255,255,255,0.06));
+}
+
+.split-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.split-handle {
+  width: 8px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background-color 120ms ease-in-out;
+}
+
+.split-handle:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* make the handle easier to hit on touch devices */
+@media (pointer: coarse) {
+  .split-handle { width: 16px; }
+}

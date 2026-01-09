@@ -1,0 +1,24 @@
+.app-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.input-modal {
+    width: 400px;
+}
+
+.input-modal-field {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-md);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+.input-modal-field:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+}

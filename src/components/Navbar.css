@@ -1,0 +1,84 @@
+.navbar {
+    height: 40px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--accent-blue);
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+}
+
+.navbar-title {
+    user-select: none;
+}
+
+.navbar-project-name {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.navbar-btn {
+    height: 28px;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+.navbar-btn:hover:not(:disabled) {
+    background: var(--bg-hover);
+    color: var(--text-active);
+}
+
+.navbar-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.navbar-btn svg {
+    flex-shrink: 0;
+}
+
+.navbar-menu {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.navbar-menu:hover {
+    background: var(--accent-blue-hover);
+}
+
+.navbar-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-color);
+    margin: 0 var(--spacing-xs);
+}
