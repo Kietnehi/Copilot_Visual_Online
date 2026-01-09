@@ -71,6 +71,71 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 - `Esc` - Close modals
 - `Right-click` - Context menu
 
+## 📸 Application Interface Preview
+
+<p align="center">
+  Below are screenshots from the <code>src/image</code> folder, showcasing the core features of <b>Visual Code Online</b>.
+</p>
+
+---
+
+### 🖥️ 1. Main Interface & Live Preview
+
+<p align="center">
+  <img src="src/image/frontend.png" alt="Main Interface & Live Preview" width="80%">
+</p>
+
+<p align="center">
+  <i>
+    This screenshot shows the primary workspace of <b>Visual Code Online</b>.
+    The layout uses a split-screen design:
+    the left panel is a code editor (currently editing <code>script.js</code> with syntax highlighting),
+    while the right panel displays a real-time <b>Live Preview</b>.
+    Any code changes are instantly reflected in the preview,
+    demonstrating a styled UI with a gradient background and interactive button.
+  </i>
+</p>
+
+---
+
+### ⚙️ 2. Editor Settings Modal
+
+<p align="center">
+  <img src="src/image/frontend2.png" alt="Editor Settings Modal" width="80%">
+</p>
+
+<p align="center">
+  <i>
+    The <b>Editor Settings</b> modal allows users to fully customize their coding experience.
+    Available options include Editor Theme (Light mode shown),
+    Font Family (JetBrains Mono), Font Size, and Tab Size.
+    Additional toggles enable or disable Word Wrap, Minimap, Line Numbers,
+    and Auto Save for improved productivity.
+  </i>
+</p>
+
+---
+
+### 🎉 3. Welcome Screen & Quick Tips
+
+<p align="center">
+  <img src="src/image/frontend3.png" alt="Welcome Screen & Quick Tips" width="80%">
+</p>
+
+<p align="center">
+  <i>
+    This image displays the Welcome (Empty State) screen when no file is selected.
+    A clean and friendly interface greets the user with
+    <b>“Welcome to Visual Code Online!”</b>.
+    The <b>Quick Tips</b> section provides helpful shortcuts,
+    including theme toggling, enabling live preview,
+    right-click actions, and project download instructions.
+  </i>
+</p>
+
+
+
+
 ## 🛠️ Tech Stack
 
 - **React 19** - Latest React with modern features
@@ -91,11 +156,6 @@ npm install
 # Start development server
 npm run dev
 
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
 ### Development

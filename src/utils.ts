@@ -302,7 +302,7 @@ export const downloadProjectAsZip = async (project: Project): Promise<void> => {
 
     addToZip(project.files, zip);
 
-    const blob = await zip.generateAsync({ type: 'blob' });
+    const blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/zip' });
     saveAs(blob, `${project.name}.zip`);
 };
 

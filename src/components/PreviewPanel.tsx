@@ -32,9 +32,18 @@ const PreviewPanel: FC<PreviewPanelProps> = ({
     }, [html]);
 
     const handleOpenInNewTab = () => {
+        // Create a downloadable HTML file so the browser knows the filename/type
         const blob = new Blob([html], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
-        window.open(url, '_blank');
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        // trigger download
+        a.click();
+
+        // cleanup
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
     };
 
     const handleFullscreen = () => {
