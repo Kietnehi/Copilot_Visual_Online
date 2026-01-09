@@ -6,11 +6,12 @@ import {
     File,
     Folder,
     FolderOpen,
+    Copy,
     Plus,
     Search
 } from 'lucide-react';
 import type { FileNode } from '../types';
-import { getFileIcon } from '../utils';
+import { getFileIcon, copyToClipboard } from '../utils';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -35,6 +36,7 @@ const Sidebar: FC<SidebarProps> = ({
     width,
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [copiedId, setCopiedId] = useState<string | null>(null);
 
     const filterFiles = (nodes: FileNode[]): FileNode[] => {
         if (!searchQuery) return nodes;
@@ -53,11 +55,9 @@ const Sidebar: FC<SidebarProps> = ({
 
     const renderFileTree = (nodes: FileNode[], level: number = 0) => {
         return filterFiles(nodes).map(node => (
-            <div key={node.id} className="file-tree-item-wrapper">
+            <div key={node.id} className="file-tree-item-wrapper" style={{ paddingLeft: `${level * 5 + 8}px` }}>
                 <div
-                    className={`file-tree-item ${node.id === activeFileId ? 'active' : ''
-                        }`}
-                    style={{ paddingLeft: `${level * 16 + 8}px` }}
+                    className={`file-tree-item ${node.id === activeFileId ? 'active' : ''}`}
                     onClick={() => {
                         if (node.type === 'folder') {
                             onFolderToggle(node.id);
@@ -67,28 +67,38 @@ const Sidebar: FC<SidebarProps> = ({
                     }}
                     onContextMenu={(e) => onContextMenu(e, node)}
                 >
-                    {node.type === 'folder' && (
-                        <span className="file-tree-chevron">
-                            {node.isOpen ? (
-                                <ChevronDown size={14} />
-                            ) : (
-                                <ChevronRight size={14} />
-                            )}
-                        </span>
-                    )}
-                    <span className="file-tree-icon">
+                    {/* ĐÃ SỬA: Chỉ giữ lại 1 block span này */}
+                    <span className="file-tree-chevron">
                         {node.type === 'folder' ? (
-                            node.isOpen ? (
-                                <FolderOpen size={16} />
-                            ) : (
-                                <Folder size={16} />
-                            )
+                            node.isOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />
                         ) : (
-                            <File size={16} />
+                            /* Giữ khoảng trống nếu là file để icon thẳng hàng với folder */
+                            <span style={{ width: 14, display: 'inline-block' }} />
                         )}
                     </span>
+
                     <span className="file-tree-emoji">{getFileIcon(node)}</span>
                     <span className="file-tree-name">{node.name}</span>
+
+                    <button
+                        className="file-copy-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (node.path) {
+                                copyToClipboard(node.path);
+                                setCopiedId(node.id);
+                                setTimeout(() => {
+                                    setCopiedId((prev) => (prev === node.id ? null : prev));
+                                }, 1500);
+                            }
+                        }}
+                        title="Copy path"
+                    >
+                        <Copy size={12} />
+                    </button>
+                    {copiedId === node.id && (
+                        <span className="file-copy-indicator">Copied</span>
+                    )}
                 </div>
                 {node.type === 'folder' && node.isOpen && node.children && (
                     <div className="file-tree-children">

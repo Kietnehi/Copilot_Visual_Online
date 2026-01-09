@@ -170,3 +170,28 @@
 .file-tree-children {
     animation: fadeIn 0.2s ease;
 }
+
+.file-copy-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.file-copy-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+}
+
+.file-copy-indicator {
+    font-size: 11px;
+    color: var(--accent-green, #4caf50);
+    margin-left: 6px;
+}

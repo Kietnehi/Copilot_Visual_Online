@@ -96,6 +96,29 @@ export const getNodePath = (nodes: FileNode[], nodeId: string): string => {
     return node.path;
 };
 
+// Copy text to clipboard with fallback
+export const copyToClipboard = async (text: string): Promise<void> => {
+    try {
+        if (typeof navigator !== 'undefined' && navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    } catch (err) {
+        // swallow errors; copy is a best-effort UX enhancement
+        // eslint-disable-next-line no-console
+        console.error('copyToClipboard failed', err);
+    }
+};
+
 // Create a new file node
 export const createFileNode = (
     name: string,
@@ -183,14 +206,47 @@ export const renameNode = (
     nodeId: string,
     newName: string
 ): FileNode[] => {
+    // Helper to update child paths when a parent folder is renamed
+    const updateChildPaths = (children: FileNode[] | undefined, oldParentPath: string, newParentPath: string): FileNode[] | undefined => {
+        if (!children) return children;
+        return children.map(child => {
+            const updatedChild: FileNode = { ...child };
+            if (updatedChild.path.startsWith(`${oldParentPath}/`)) {
+                updatedChild.path = updatedChild.path.replace(`${oldParentPath}/`, `${newParentPath}/`);
+            } else {
+                // Fallback: reconstruct path from new parent
+                updatedChild.path = `${newParentPath}/${updatedChild.name}`;
+            }
+
+            if (updatedChild.children) {
+                updatedChild.children = updateChildPaths(updatedChild.children, oldParentPath, newParentPath) as FileNode[];
+            }
+
+            return updatedChild;
+        });
+    };
+
     return nodes.map(node => {
         if (node.id === nodeId) {
             const pathParts = node.path.split('/');
+            const oldPath = node.path;
             pathParts[pathParts.length - 1] = newName;
+            const newPath = pathParts.join('/');
+
+            // If folder, cascade path updates to children
+            if (node.type === 'folder') {
+                return {
+                    ...node,
+                    name: newName,
+                    path: newPath,
+                    children: updateChildPaths(node.children, oldPath, newPath),
+                };
+            }
+
             return {
                 ...node,
                 name: newName,
-                path: pathParts.join('/'),
+                path: newPath,
                 fileType: node.type === 'file' ? getFileType(newName) : undefined,
             };
         }
@@ -247,14 +303,20 @@ export const addNodeToParent = (
     newNode: FileNode
 ): FileNode[] => {
     if (!parentId) {
-        return [...nodes, newNode];
+        // Ensure root-level path is correct
+        const rootNode = { ...newNode, path: newNode.path || newNode.name, parent: undefined } as FileNode;
+        return [...nodes, rootNode];
     }
 
     return nodes.map(node => {
         if (node.id === parentId) {
+            const parentPath = node.path || '';
+            const childPath = parentPath ? `${parentPath}/${newNode.name}` : newNode.name;
+            const nodeToAdd = { ...newNode, path: childPath, parent: parentId } as FileNode;
+
             return {
                 ...node,
-                children: [...(node.children || []), newNode],
+                children: [...(node.children || []), nodeToAdd],
                 isOpen: true,
             };
         }
@@ -302,7 +364,7 @@ export const downloadProjectAsZip = async (project: Project): Promise<void> => {
 
     addToZip(project.files, zip);
 
-    const blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/zip' });
+    const blob = await zip.generateAsync({ type: 'blob' });
     saveAs(blob, `${project.name}.zip`);
 };
 
