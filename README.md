@@ -9,6 +9,16 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript)
 ![Monaco Editor](https://img.shields.io/badge/Monaco-Editor-0066B8?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=node.js)
+![Vite](https://img.shields.io/badge/Vite-3.3-646CFF?style=for-the-badge&logo=vite)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100.0-009688?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.0-47A248?style=for-the-badge&logo=mongodb)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git)
+![Docker](https://img.shields.io/badge/Docker-24-2496ED?style=for-the-badge&logo=docker)
+![Jina AI](https://img.shields.io/badge/Jina-v3-FF6F61?style=for-the-badge&logo=jina)
+![Google Gemini](https://img.shields.io/badge/Google%20Gemini-2.0-4285F4?style=for-the-badge&logo=google)
+
 
 ## ✨ Features
 
