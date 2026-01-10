@@ -6,6 +6,7 @@ import PreviewPanel from './components/PreviewPanel';
 import SplitPane from './components/SplitPane';
 import ContextMenu from './components/ContextMenu';
 import SettingsModal from './components/SettingsModal';
+import CopilotPanel from './components/CopilotPanel';
 import type {
     AppState,
     EditorTab,
@@ -75,6 +76,7 @@ function App() {
     } | null>(null);
 
     const [showSettings, setShowSettings] = useState(false);
+    const [showCopilot, setShowCopilot] = useState(false);
     const [appTheme, setAppTheme] = useState<'dark' | 'light'>('dark');
     const [inputPrompt, setInputPrompt] = useState<{
         type: 'file' | 'folder' | 'rename';
@@ -385,7 +387,9 @@ function App() {
                 onDownloadProject={handleDownloadProject}
                 onTogglePreview={handleTogglePreview}
                 onToggleTheme={handleToggleTheme}
+                onToggleCopilot={() => setShowCopilot(!showCopilot)}
                 showPreview={state.showPreview}
+                showCopilot={showCopilot}
                 isDarkTheme={appTheme === 'dark'}
                 onSaveAll={handleSaveAll}
                 hasUnsavedChanges={hasUnsavedChanges}
@@ -394,18 +398,68 @@ function App() {
             <div className="app-content">
                 {!previewFull && (
                     <Sidebar
-                    files={activeProject?.files || []}
-                    activeFileId={currentFile?.id || null}
-                    onFileSelect={handleFileSelect}
-                    onFolderToggle={handleFolderToggle}
-                    onContextMenu={handleContextMenu}
-                    onNewFile={() => handlePromptNewFile(null)}
-                    onNewFolder={() => handlePromptNewFolder(null)}
-                    width={state.sidebarWidth}
+                        files={activeProject?.files || []}
+                        activeFileId={currentFile?.id || null}
+                        onFileSelect={handleFileSelect}
+                        onFolderToggle={handleFolderToggle}
+                        onContextMenu={handleContextMenu}
+                        onNewFile={() => handlePromptNewFile(null)}
+                        onNewFolder={() => handlePromptNewFolder(null)}
+                        width={state.sidebarWidth}
                     />
                 )}
 
-                {previewFull ? (
+                {showCopilot ? (
+                    <div style={{ display: 'flex', flex: 1, minWidth: 0, height: '100%' }}>
+                        <SplitPane rightInitialWidth={450} minRight={300} minLeft={400}>
+                            {previewFull ? (
+                                <div style={{ display: 'flex', flex: 1, minWidth: 0, height: '100%' }}>
+                                    <PreviewPanel
+                                        html={previewHtml}
+                                        onRefresh={handleRefreshPreview}
+                                        onToggleExpand={togglePreviewFull}
+                                    />
+                                </div>
+                            ) : state.showPreview ? (
+                                <div style={{ display: 'flex', flex: 1, minWidth: 0, height: '100%' }}>
+                                    <SplitPane rightInitialWidth={400} minRight={200} minLeft={300}>
+                                        <EditorArea
+                                            tabs={state.openTabs}
+                                            activeTabId={state.activeTabId}
+                                            onTabChange={(tabId) => setState(prev => ({ ...prev, activeTabId: tabId }))}
+                                            onTabClose={handleCloseTab}
+                                            onCodeChange={handleCodeChange}
+                                            currentCode={currentFile?.content || ''}
+                                            theme={state.settings.theme}
+                                            fontSize={state.settings.fontSize}
+                                            fontFamily={state.settings.fontFamily}
+                                        />
+
+                                        <PreviewPanel
+                                            html={previewHtml}
+                                            onRefresh={handleRefreshPreview}
+                                            onToggleExpand={togglePreviewFull}
+                                        />
+                                    </SplitPane>
+                                </div>
+                            ) : (
+                                <EditorArea
+                                    tabs={state.openTabs}
+                                    activeTabId={state.activeTabId}
+                                    onTabChange={(tabId) => setState(prev => ({ ...prev, activeTabId: tabId }))}
+                                    onTabClose={handleCloseTab}
+                                    onCodeChange={handleCodeChange}
+                                    currentCode={currentFile?.content || ''}
+                                    theme={state.settings.theme}
+                                    fontSize={state.settings.fontSize}
+                                    fontFamily={state.settings.fontFamily}
+                                />
+                            )}
+
+                            <CopilotPanel project={activeProject} />
+                        </SplitPane>
+                    </div>
+                ) : previewFull ? (
                     <div style={{ display: 'flex', flex: 1, minWidth: 0, height: '100%' }}>
                         <PreviewPanel
                             html={previewHtml}

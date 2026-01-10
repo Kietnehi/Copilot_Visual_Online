@@ -63,6 +63,15 @@
     cursor: not-allowed;
 }
 
+.navbar-btn.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.navbar-btn.active:hover {
+    background: var(--accent-blue-hover);
+}
+
 .navbar-btn svg {
     flex-shrink: 0;
 }

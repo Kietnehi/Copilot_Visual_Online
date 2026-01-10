@@ -8,7 +8,8 @@ import {
     EyeOff,
     Sun,
     Moon,
-    Save
+    Save,
+    Bot
 } from 'lucide-react';
 import './Navbar.css';
 
@@ -19,7 +20,9 @@ interface NavbarProps {
     onDownloadProject: () => void;
     onTogglePreview: () => void;
     onToggleTheme: () => void;
+    onToggleCopilot?: () => void;
     showPreview: boolean;
+    showCopilot?: boolean;
     isDarkTheme: boolean;
     onSaveAll: () => void;
     hasUnsavedChanges: boolean;
@@ -32,7 +35,9 @@ const Navbar: FC<NavbarProps> = ({
     onDownloadProject,
     onTogglePreview,
     onToggleTheme,
+    onToggleCopilot,
     showPreview,
+    showCopilot,
     isDarkTheme,
     onSaveAll,
     hasUnsavedChanges,
@@ -63,6 +68,14 @@ const Navbar: FC<NavbarProps> = ({
                     data-tooltip={showPreview ? 'Hide Preview' : 'Show Preview'}
                 >
                     {showPreview ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+
+                <button
+                    className={`navbar-btn ${showCopilot ? 'active' : ''}`}
+                    onClick={onToggleCopilot}
+                    data-tooltip={showCopilot ? 'Hide AI Copilot' : 'Show AI Copilot'}
+                >
+                    <Bot size={18} />
                 </button>
 
                 <button

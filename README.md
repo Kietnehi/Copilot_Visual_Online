@@ -64,6 +64,15 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 - **Import projects** (coming soon)
 - **Project templates** - Start with sample code
 
+### 🤖 **AI Code Copilot** ⭐ NEW!
+- **Repository Understanding** - AI that comprehends your entire codebase
+- **Semantic Search** - Powered by Faiss vector database and Jina embeddings v3
+- **Intelligent Responses** - Google Gemini API generates context-aware answers
+- **Ask Anything** - "Where is authentication handled?", "How do I add a feature?", etc.
+- **Source Attribution** - See which files were used for each answer
+- **Real-time Indexing** - Track progress as your repo is being indexed
+- **Next Steps Suggestion** - Get actionable guidance on what to code next
+
 ### ⌨️ **Keyboard Shortcuts**
 - `Ctrl+S` - Save all files
 - `Ctrl+W` - Close active tab
@@ -76,6 +85,45 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 <p align="center">
   Below are screenshots from the <code>src/image</code> folder, showcasing the core features of <b>Visual Code Online</b>.
 </p>
+
+---
+<div align="center">
+  <h1>AI Code Copilot Architecture</h1>
+  <img src="src/image/architecture.png" alt="AI Code Copilot Architecture" width="800">
+  <p><i>Comprehensive architecture of the AI-powered coding assistant</i></p>
+</div>
+
+---
+
+## 🛠 System Overview
+
+### 1. Frontend (React + TypeScript)
+- **Monaco Editor:** High-performance code editor for a seamless coding experience.
+- **Chat UI:** Interactive interface for user-AI communication.
+- **Communication:** Connects to the backend via **HTTP/REST** protocols.
+
+### 2. Backend API (FastAPI + Python)
+- **RepoIndexer:** Responsible for scanning and processing the repository structure.
+- **CodeCopilot (Orchestrator):** The core engine that routes requests and manages logic.
+- **Endpoints:**
+    - `/api/chat`: Handles conversational AI interactions.
+    - `/api/code/complete`: Provides intelligent code autocompletion.
+    - `/api/index/repo`: Manages the repository indexing workflow.
+
+### 3. AI/ML Layer
+- **Jina Embeddings v3:** Converts code and text into high-dimensional vectors.
+- **Faiss Vector DB:** Efficiently stores and performs **Semantic Search** to find relevant code context.
+- **Google Gemini API:** State-of-the-art LLM used for reasoning, code generation, and explanations.
+
+---
+
+<div align="center">
+  <h3>🔄 Core Workflow</h3>
+</div>
+
+1. **Indexing:** Source code is processed by `RepoIndexer`, vectorized via `Jina`, and stored in `Faiss`.
+2. **Retrieval:** When a user asks a question, the system performs a semantic search in `Faiss` to retrieve the most relevant code snippets.
+3. **Generation:** `Gemini` processes the user's query along with the retrieved context to generate accurate and context-aware responses.
 
 ---
 
@@ -114,6 +162,7 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
   </i>
 </p>
 
+
 ---
 
 ### 🎉 3. Welcome Screen & Quick Tips
@@ -133,17 +182,56 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
   </i>
 </p>
 
+### 💬 4. AI Chat Interface
 
+<p align="center">
+  <img src="src/image/copilotmini.png" alt="AI Code Copilot Chat UI" width="450">
+</p>
 
+<p align="center">
+  <i>
+    The intuitive <b>Chat Interface</b> provides quick action suggestions such as 
+    "What does this project do?" or "Explain the file structure". 
+    It leverages the AI layer to provide context-aware answers directly from your codebase.
+  </i>
+</p>
+
+---
+
+### 🤖 5. Response AI Visual AI Copilot ONLINE
+
+<p align="center">
+  <img src="src/image/result.png" alt="Response AI Visual AI Copilot ONLINE" width="85%">
+</p>
+
+<p align="center">
+  <i>
+    The <b>AI Copilot</b> in action within the integrated development environment. 
+    It provides real-time, context-aware assistance by analyzing the project's files 
+    (such as <code>index.html</code>, <code>style.css</code>, and <code>script.js</code>). 
+    As shown, the AI can suggest specific CSS modifications and provide code snippets 
+    to help users customize their UI instantly.
+  </i>
+</p>
+
+---
 
 ## 🛠️ Tech Stack
 
+### Frontend
 - **React 19** - Latest React with modern features
 - **TypeScript 5.9** - Type-safe development
 - **Monaco Editor** - Professional code editing
 - **Vite** - Lightning-fast build tool
 - **JSZip** - Project export functionality
 - **Lucide React** - Beautiful icon library
+
+### Backend (AI Copilot)
+- **FastAPI** - Modern Python web framework
+- **Faiss** - Facebook's vector similarity search
+- **Jina AI v3** - State-of-the-art embeddings model
+- **Google Gemini 2.0** - Advanced LLM for code understanding
+- **Python 3.8+** - Backend runtime
 
 ## 🚀 Getting Started
 
@@ -214,6 +302,79 @@ Right-click any file/folder for:
 - Delete
 - New File (folders only)
 - New Folder (folders only)
+
+### Using the AI Copilot
+
+The AI Copilot helps you understand and navigate your codebase using advanced AI.
+
+#### Setup (First Time):
+
+1. **Get a Gemini API Key**:
+   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create a free API key
+   - Copy the key
+
+2. **Configure Backend**:
+   ```bash
+   cd backend
+   cp .env.example .env
+   # Edit .env and paste your API key
+   ```
+
+3. **Start Backend Server**:
+   ```bash
+   # Windows
+   start_backend.bat
+   
+   # Linux/Mac
+   chmod +x start_backend.sh
+   ./start_backend.sh
+   ```
+
+#### Using the Copilot:
+
+1. **Open Copilot Panel**:
+   - Click the Bot 🤖 icon in the navbar
+   - The copilot panel opens on the right side
+
+2. **Index Your Current Project**:
+   - Click the status badge that says "Not indexed - Click to start"
+   - The Copilot will automatically index all files in your current project
+   - No need to enter paths or URLs - it reads directly from the editor!
+   - Wait for indexing to complete (usually takes a few seconds)
+
+3. **Ask Questions**:
+   - Type your question in the chat input
+   - Examples:
+     - "What does this project do?"
+     - "Where is the authentication logic?"
+     - "How do I add a new component?"
+     - "Explain the file structure"
+     - "What technologies are used?"
+   
+4. **Get Answers**:
+   - AI analyzes relevant code chunks
+   - Provides detailed, context-aware responses
+   - Shows source files used for the answer
+   - Suggests next steps and where to add code
+
+#### Copilot Tips:
+
+- ✅ **Be specific**: "How does user login work?" vs "Tell me about users"
+- ✅ **Ask for guidance**: "How do I add a dark mode toggle?"
+- ✅ **Request explanations**: "Explain what App.tsx does"
+- ✅ **Get locations**: "Where should I add error handling?"
+
+#### Supported Languages:
+
+The copilot understands:
+- JavaScript, TypeScript, React, Vue
+- Python, Java, C++, C#, Go, Rust
+- HTML, CSS, SCSS
+- JSON, YAML, Markdown
+- And many more!
+
+See [backend/README.md](backend/README.md) for detailed documentation.
 
 ## 🎯 Features in Detail
 
