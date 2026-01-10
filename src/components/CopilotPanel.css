@@ -287,12 +287,26 @@
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem 1.25rem;
     border-radius: 12px;
+    word-break: break-word;
     line-height: 1.6;
     white-space: pre-wrap;
+    font-family: 'Fira Code', monospace; /* font code đẹp */
     word-wrap: break-word;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
+.message-text pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+.message-text code {
+    /* background-color: #b74141; nền tối */
+    color: #f8f8f2;           /* chữ sáng */
+    padding: 2px 4px;
+    border-radius: 4px;
+}
 .message.user .message-text {
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.2);

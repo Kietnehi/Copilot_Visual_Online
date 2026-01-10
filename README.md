@@ -1,7 +1,9 @@
 # 🚀 Visual Code Online
 
 A powerful, feature-rich **online code editor** inspired by Visual Studio Code. Build your web projects entirely in the browser with live preview, multi-file support, and professional developer tools.
-
+<p align="center">
+  <img src="src/output.gif" alt="Visual Code Online Demo" width="80%" />
+</p>
 ![Visual Code Online](https://img.shields.io/badge/VS%20Code-Online-blue?style=for-the-badge&logo=visual-studio-code)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript)
@@ -201,8 +203,14 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 ### 🤖 5. Response AI Visual AI Copilot ONLINE
 
 <p align="center">
-  <img src="src/image/result.png" alt="Response AI Visual AI Copilot ONLINE" width="85%">
+  <img src="src/image/result.png" alt="Result 1" width="45%" style="margin:10px;">
+  <img src="src/image/result1.png" alt="Result 2" width="45%" style="margin:10px;">
 </p>
+<p align="center">
+  <img src="src/image/result2.png" alt="Result 3" width="45%" style="margin:10px;">
+  <img src="src/image/result3.png" alt="Result 4" width="45%" style="margin:10px;">
+</p>
+
 
 <p align="center">
   <i>

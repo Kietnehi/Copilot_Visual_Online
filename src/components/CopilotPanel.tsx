@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Loader2, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import type { Project, FileNode } from '../types';
 import './CopilotPanel.css';
-
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 interface Message {
     role: 'user' | 'assistant';
     content: string;
@@ -247,7 +250,26 @@ const CopilotPanel: React.FC<CopilotPanelProps> = ({ project }) => {
                         </div>
                         <div className="message-content">
                             <div className="message-text">
+                                <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    code({node, inline, className, children, ...props}) {
+                                    const match = /language-(\w+)/.exec(className || '');
+                                    return !inline && match ? (
+                                        <SyntaxHighlighter style={oneDark} language={match[1]} PreTag="div" {...props}>
+                                        {String(children).replace(/\n$/, '')}
+                                        </SyntaxHighlighter>
+                                    ) : (
+                                        <code className={className} {...props}>
+                                        {children}
+                                        </code>
+                                    );
+                                    }
+                                }}
+                                >
                                 {message.content}
+                                </ReactMarkdown>
+
                             </div>
                             {message.sources && message.sources.length > 0 && (
                                 <div className="message-sources">
