@@ -4,6 +4,7 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 <p align="center">
   <img src="src/output.gif" alt="Visual Code Online Demo" width="80%" />
 </p>
+
 ![Visual Code Online](https://img.shields.io/badge/VS%20Code-Online-blue?style=for-the-badge&logo=visual-studio-code)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript)
