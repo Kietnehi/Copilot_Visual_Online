@@ -4,21 +4,36 @@ A powerful, feature-rich **online code editor** inspired by Visual Studio Code. 
 <p align="center">
   <img src="src/output.gif" alt="Visual Code Online Demo" width="80%" />
 </p>
+<div align="center">
 
-![Visual Code Online](https://img.shields.io/badge/VS%20Code-Online-blue?style=for-the-badge&logo=visual-studio-code)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript)
-![Monaco Editor](https://img.shields.io/badge/Monaco-Editor-0066B8?style=for-the-badge)
-![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=node.js)
-![Vite](https://img.shields.io/badge/Vite-3.3-646CFF?style=for-the-badge&logo=vite)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100.0-009688?style=for-the-badge&logo=fastapi)
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python)
-![MongoDB](https://img.shields.io/badge/MongoDB-6.0-47A248?style=for-the-badge&logo=mongodb)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git)
-![Docker](https://img.shields.io/badge/Docker-24-2496ED?style=for-the-badge&logo=docker)
-![Jina AI](https://img.shields.io/badge/Jina-v3-FF6F61?style=for-the-badge&logo=jina)
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-2.0-4285F4?style=for-the-badge&logo=google)
+### 📊 Project Status
+![GitHub repo size](https://img.shields.io/github/repo-size/Kietnehi/Copilot_Visual_Online?style=for-the-badge&color=blueviolet)
+![GitHub last commit](https://img.shields.io/github/last-commit/Kietnehi/Copilot_Visual_Online?style=for-the-badge&color=brightgreen)
+![GitHub license](https://img.shields.io/github/license/Kietnehi/Copilot_Visual_Online?style=for-the-badge&color=blue)
+![GitHub issues](https://img.shields.io/github/issues/Kietnehi/Copilot_Visual_Online?style=for-the-badge&color=red)
 
+### 🚀 Frontend & Editor Stack
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript_5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite_3.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Monaco Editor](https://img.shields.io/badge/Monaco_Editor-0066B8?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+### 🧠 Backend & AI Intelligence
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini_2.0-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Meta Llama](https://img.shields.io/badge/Meta_Llama-0467DF?style=for-the-badge&logo=meta&logoColor=white)
+![Alibaba Qwen](https://img.shields.io/badge/Alibaba_Qwen-525CB0?style=for-the-badge&logo=alibabacloud&logoColor=white)
+
+### ⚙️ Infrastructure & Tools
+![Docker](https://img.shields.io/badge/Docker_24-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Jina AI](https://img.shields.io/badge/Jina_AI-FF6F61?style=for-the-badge&logo=jina&logoColor=white)
+![Faiss](https://img.shields.io/badge/Vector_DB-Faiss-yellowgreen?style=for-the-badge)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+</div>
 
 ## ✨ Features
 
